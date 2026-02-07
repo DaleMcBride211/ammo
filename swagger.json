@@ -1,0 +1,178 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Ammo API",
+    "description": "Inventory management for firearms and ammunition",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/firearms/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/ammo/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "New Ammunition Data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "caliber": {
+                  "type": "string",
+                  "example": "This is a test of this"
+                },
+                "bulletWeight": {
+                  "type": "number",
+                  "example": 124
+                },
+                "bulletType": {
+                  "type": "string",
+                  "example": "HST JHP"
+                },
+                "brand": {
+                  "type": "string",
+                  "example": "Federal"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Handgun"
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 50
+                },
+                "muzzleVelocity": {
+                  "type": "number",
+                  "example": 1150
+                },
+                "lotNumber": {
+                  "type": "string",
+                  "example": "L123-A"
+                },
+                "notes": {
+                  "type": "string",
+                  "example": "Self-defense carry ammo"
+                },
+                "ownerId": {
+                  "type": "string",
+                  "example": "user_01"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/ammo/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated Ammunition Data",
+            "schema": {
+              "$ref": "#/definitions/Ammunition"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
