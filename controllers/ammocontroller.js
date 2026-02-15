@@ -52,6 +52,7 @@ const createAmmo = async (req, res) => {
   }
 };
 
+
 // PUT update ammunition
 const updateAmmo = async (req, res) => {
   /* #swagger.parameters['body'] = {
@@ -71,6 +72,7 @@ const updateAmmo = async (req, res) => {
     res.status(400).json({ message: "Error updating record", error: err.message });
   }
 };
+
 
 // DELETE ammunition
 const deleteAmmo = async (req, res) => {
