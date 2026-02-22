@@ -14,7 +14,10 @@
   "paths": {
     "/firearms/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Firearms"
+        ],
+        "description": "Retrieve all firearms from the database.",
         "responses": {
           "200": {
             "description": "OK"
@@ -25,7 +28,79 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Firearms"
+        ],
+        "description": "Create a new firearm entry.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Firearm Data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nickname": {
+                  "type": "string",
+                  "example": "My Primary Rifle"
+                },
+                "manufacturer": {
+                  "type": "string",
+                  "example": "Daniel Defense"
+                },
+                "model": {
+                  "type": "string",
+                  "example": "DDM4 V7"
+                },
+                "serialNumber": {
+                  "type": "string",
+                  "example": "DD123456"
+                },
+                "caliber": {
+                  "type": "string",
+                  "example": "5.56 NATO"
+                },
+                "actionType": {
+                  "type": "string",
+                  "example": "Semi-Auto"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "MSR"
+                },
+                "barrelLength": {
+                  "type": "number",
+                  "example": 16
+                },
+                "finish": {
+                  "type": "string",
+                  "example": "Black Anodized"
+                },
+                "purchaseDate": {
+                  "type": "string",
+                  "example": "2024-02-21"
+                },
+                "purchasePrice": {
+                  "type": "number",
+                  "example": 1800
+                },
+                "image": {
+                  "type": "string",
+                  "example": "https://example.com/image.jpg"
+                },
+                "notes": {
+                  "type": "string",
+                  "example": "Equipped with LPVO optic"
+                },
+                "ownerId": {
+                  "type": "string",
+                  "example": "user_123"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -38,7 +113,10 @@
     },
     "/firearms/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Firearms"
+        ],
+        "description": "Retrieve a single firearm by its ID.",
         "parameters": [
           {
             "name": "id",
@@ -60,18 +138,43 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Firearms"
+        ],
+        "description": "Update an existing firearm by ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Firearm Data to Update",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nickname": {
+                  "type": "string",
+                  "example": "Updated Nickname"
+                },
+                "purchasePrice": {
+                  "type": "number",
+                  "example": 1750
+                },
+                "notes": {
+                  "type": "string",
+                  "example": "Added new sling"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -82,7 +185,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Firearms"
+        ],
+        "description": "Delete a firearm from the database.",
         "parameters": [
           {
             "name": "id",
