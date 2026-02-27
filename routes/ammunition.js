@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const ammoController = require('../controllers/ammocontroller');
+const { ensureAuth } = require('../middleware/auth');
 
 // GET all ammunition
-router.get('/', ammoController.getAll);
+router.get('/', ensureAuth, ammoController.getAll);
 
 // GET a single ammunition record by ID
-router.get('/:id', ammoController.getSingle);
+router.get('/:id', ensureAuth, ammoController.getSingle);
 
-router.post('/', ammoController.createAmmo);
+router.post('/', ensureAuth, ammoController.createAmmo);
 
-router.put('/:id', ammoController.updateAmmo);
+router.put('/:id', ensureAuth, ammoController.updateAmmo);
 
-router.delete('/:id', ammoController.deleteAmmo);
+router.delete('/:id', ensureAuth, ammoController.deleteAmmo);
 
 module.exports = router;
