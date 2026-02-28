@@ -12,6 +12,8 @@ require('./config/passport')(passport);
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.set('trust proxy', 1);
+
 // 1. Connect to Database
 connectDB();
 
@@ -25,7 +27,10 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'keyboard cat', // Use env variable for Render
   resave: false,
   saveUninitialized: false,
-  // cookie: { secure: false } // Set to true if using HTTPS on Render
+  cookie: { 
+    secure: process.env.NODE_ENV === 'production', // true on Render, false locally
+    sameSite: 'lax' 
+  }
 }));
 
 // 4. Passport Middleware
